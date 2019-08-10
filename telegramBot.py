@@ -42,10 +42,6 @@ def listTorrents(update, context):
     cmd = ["/usr/bin/transmission-remote", "-l"]
     checkOutput(cmd, update, authorizedUsers)
 
-def listTorrents(update, context):
-    cmd = ["/usr/bin/transmission-remote", "-l"]
-    checkOutput(cmd, update, authorizedUsers)
-
 def startTransmission(update, context):
     cmd = ["/usr/bin/transmission-daemon"]
     checkOutput(cmd, update, authorizedUsers)
@@ -76,7 +72,7 @@ def postLatestXkcd(update, context):
 
         xkcd = json.load(apiGet("https://xkcd.com/info.0.json"))
 
-        sendLatestXkcd(xkcd, chat_id, context.bot, context.job.context.chat_data)
+        sendLatestXkcd(xkcd, chat_id, context.bot, context.chat_data)
     except Exception as e:
         print(str(e))
 
