@@ -38,6 +38,10 @@ def hello(update, context):
     update.message.reply_text(
         'Hello {}'.format(update.message.from_user.first_name))
 
+def myIp(update, context):
+    ip = apiGet("https://api.ipify.org").read().decode("utf-8")
+    update.message.reply_text(ip)
+
 def listTorrents(update, context):
     cmd = ["/usr/bin/transmission-remote", "-l"]
     checkOutput(cmd, update, authorizedUsers)
@@ -122,6 +126,7 @@ def unsubscribeXkcd(update, context):
 
 handlers = [
         { "name": "hello", "fn": hello },
+        { "name": "ip", "fn": myIp },
         { "name": "torrents", "fn": listTorrents },
         { "name": "start", "fn": startTransmission },
         { "name": "stop", "fn": stopTransmission },
